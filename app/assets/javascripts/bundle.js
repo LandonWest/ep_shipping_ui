@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 16);
+/******/ 	return __webpack_require__(__webpack_require__.s = 17);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -306,9 +306,9 @@ module.exports = emptyFunction;
 /* WEBPACK VAR INJECTION */(function(process) {
 
 if (process.env.NODE_ENV === 'production') {
-  module.exports = __webpack_require__(27);
+  module.exports = __webpack_require__(28);
 } else {
-  module.exports = __webpack_require__(26);
+  module.exports = __webpack_require__(27);
 }
 
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
@@ -699,7 +699,7 @@ module.exports = ExecutionEnvironment;
  * 
  */
 
-var isTextNode = __webpack_require__(22);
+var isTextNode = __webpack_require__(23);
 
 /*eslint-disable no-bitwise */
 
@@ -886,7 +886,7 @@ module.exports = shallowEqual;
 if (process.env.NODE_ENV !== 'production') {
   var invariant = __webpack_require__(5);
   var warning = __webpack_require__(6);
-  var ReactPropTypesSecret = __webpack_require__(23);
+  var ReactPropTypesSecret = __webpack_require__(24);
   var loggedTypeFailures = {};
 }
 
@@ -953,6 +953,10 @@ var _react = __webpack_require__(2);
 
 var _react2 = _interopRequireDefault(_react);
 
+var _ToAddressFields = __webpack_require__(16);
+
+var _ToAddressFields2 = _interopRequireDefault(_ToAddressFields);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -980,15 +984,7 @@ var App = function (_Component) {
     value: function render() {
       switch (this.state.step) {
         case 1:
-          return _react2.default.createElement(
-            'div',
-            null,
-            _react2.default.createElement(
-              'h1',
-              null,
-              'First Step'
-            )
-          );
+          return _react2.default.createElement(_ToAddressFields2.default, null);
           break;
         default:
           return _react2.default.createElement(
@@ -1048,15 +1044,89 @@ if (process.env.NODE_ENV === 'production') {
   // DCE check should happen before ReactDOM bundle executes so that
   // DevTools can report bad minification during injection.
   checkDCE();
-  module.exports = __webpack_require__(25);
+  module.exports = __webpack_require__(26);
 } else {
-  module.exports = __webpack_require__(24);
+  module.exports = __webpack_require__(25);
 }
 
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
 /* 16 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(2);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _InputField = __webpack_require__(29);
+
+var _InputField2 = _interopRequireDefault(_InputField);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var ToAddressFields = function (_Component) {
+  _inherits(ToAddressFields, _Component);
+
+  function ToAddressFields() {
+    _classCallCheck(this, ToAddressFields);
+
+    return _possibleConstructorReturn(this, (ToAddressFields.__proto__ || Object.getPrototypeOf(ToAddressFields)).call(this));
+  }
+
+  _createClass(ToAddressFields, [{
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'div',
+        null,
+        _react2.default.createElement(
+          'h2',
+          null,
+          'To Address'
+        ),
+        _react2.default.createElement(_InputField2.default, { field: 'Company', jsClass: 'jsCompany' }),
+        _react2.default.createElement(_InputField2.default, { field: 'Name', jsClass: 'jsName' }),
+        _react2.default.createElement(_InputField2.default, { field: 'Street 1', jsClass: 'jsStreet1' }),
+        _react2.default.createElement(_InputField2.default, { field: 'Street 2', jsClass: 'jsStreet2' }),
+        _react2.default.createElement(_InputField2.default, { field: 'City', jsClass: 'jsCity' }),
+        _react2.default.createElement(_InputField2.default, { field: 'State', jsClass: 'jsState' }),
+        _react2.default.createElement(_InputField2.default, { field: 'Zip', jsClass: 'jsZip' }),
+        _react2.default.createElement(_InputField2.default, { field: 'Phone', jsClass: 'jsPhone' }),
+        _react2.default.createElement(_InputField2.default, { field: 'Email', jsClass: 'jsEmail' }),
+        _react2.default.createElement(
+          'button',
+          null,
+          'Next'
+        )
+      );
+    }
+  }]);
+
+  return ToAddressFields;
+}(_react.Component);
+
+;
+
+exports.default = ToAddressFields;
+
+/***/ }),
+/* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1081,7 +1151,7 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 /***/ }),
-/* 17 */
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1116,7 +1186,7 @@ function camelize(string) {
 module.exports = camelize;
 
 /***/ }),
-/* 18 */
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1131,7 +1201,7 @@ module.exports = camelize;
 
 
 
-var camelize = __webpack_require__(17);
+var camelize = __webpack_require__(18);
 
 var msPattern = /^-ms-/;
 
@@ -1159,7 +1229,7 @@ function camelizeStyleName(string) {
 module.exports = camelizeStyleName;
 
 /***/ }),
-/* 19 */
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1195,7 +1265,7 @@ function hyphenate(string) {
 module.exports = hyphenate;
 
 /***/ }),
-/* 20 */
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1210,7 +1280,7 @@ module.exports = hyphenate;
 
 
 
-var hyphenate = __webpack_require__(19);
+var hyphenate = __webpack_require__(20);
 
 var msPattern = /^ms-/;
 
@@ -1237,7 +1307,7 @@ function hyphenateStyleName(string) {
 module.exports = hyphenateStyleName;
 
 /***/ }),
-/* 21 */
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1265,7 +1335,7 @@ function isNode(object) {
 module.exports = isNode;
 
 /***/ }),
-/* 22 */
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1280,7 +1350,7 @@ module.exports = isNode;
  * @typechecks
  */
 
-var isNode = __webpack_require__(21);
+var isNode = __webpack_require__(22);
 
 /**
  * @param {*} object The object to check.
@@ -1293,7 +1363,7 @@ function isTextNode(object) {
 module.exports = isTextNode;
 
 /***/ }),
-/* 23 */
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1312,7 +1382,7 @@ module.exports = ReactPropTypesSecret;
 
 
 /***/ }),
-/* 24 */
+/* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1346,8 +1416,8 @@ var containsNode = __webpack_require__(9);
 var focusNode = __webpack_require__(10);
 var emptyObject = __webpack_require__(3);
 var checkPropTypes = __webpack_require__(13);
-var hyphenateStyleName = __webpack_require__(20);
-var camelizeStyleName = __webpack_require__(18);
+var hyphenateStyleName = __webpack_require__(21);
+var camelizeStyleName = __webpack_require__(19);
 
 /**
  * WARNING: DO NOT manually require this module.
@@ -16714,7 +16784,7 @@ module.exports = reactDom;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 25 */
+/* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16950,7 +17020,7 @@ Z.injectIntoDevTools({findFiberByHostInstance:pb,bundleType:0,version:"16.2.0",r
 
 
 /***/ }),
-/* 26 */
+/* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18315,7 +18385,7 @@ module.exports = react;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 27 */
+/* 28 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18341,6 +18411,39 @@ var U={Children:{map:function(a,b,e){if(null==a)return a;var c=[];T(a,c,null,b,e
 d=a.key,g=a.ref,k=a._owner;if(null!=b){void 0!==b.ref&&(g=b.ref,k=G.current);void 0!==b.key&&(d=""+b.key);if(a.type&&a.type.defaultProps)var f=a.type.defaultProps;for(h in b)H.call(b,h)&&!I.hasOwnProperty(h)&&(c[h]=void 0===b[h]&&void 0!==f?f[h]:b[h])}var h=arguments.length-2;if(1===h)c.children=e;else if(1<h){f=Array(h);for(var l=0;l<h;l++)f[l]=arguments[l+2];c.children=f}return{$$typeof:r,type:a.type,key:d,ref:g,props:c,_owner:k}},createFactory:function(a){var b=J.bind(null,a);b.type=a;return b},
 isValidElement:K,version:"16.2.0",__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED:{ReactCurrentOwner:G,assign:m}},V=Object.freeze({default:U}),W=V&&U||V;module.exports=W["default"]?W["default"]:W;
 
+
+/***/ }),
+/* 29 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = __webpack_require__(2);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function InputFields(props) {
+  return _react2.default.createElement(
+    "div",
+    null,
+    _react2.default.createElement(
+      "label",
+      { htmlFor: "" },
+      props.field
+    ),
+    _react2.default.createElement("input", { type: "text",
+      className: props.jsClass })
+  );
+}
+
+exports.default = InputFields;
 
 /***/ })
 /******/ ]);

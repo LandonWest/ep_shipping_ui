@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ToAddressFields from './ToAddressFields';
 
 class App extends Component {
   constructor() {
@@ -9,17 +10,18 @@ class App extends Component {
     }
   }
 
-
   render() {
     switch (this.state.step) {
       case 1:
         return (
-          <div><h1>First Step</h1></div>
+          <ToAddressFields />
         );
         break;
       default:
         return (
-          <div><h1>Fallback</h1></div>
+          <div>
+            <h1>Fallback</h1>
+          </div>
         );
     }
   }
