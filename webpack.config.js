@@ -1,10 +1,10 @@
-const path = require 'path';
+const path = require('path');
 
 module.exports = {
-  entry: 'frontend/index.js',
+  entry: './frontend/index.js',
   output: {
     path: path.resolve(__dirname, 'app', 'assets', 'javascripts'),
-    filename: bundle.js,
+    filename: 'bundle.js',
   },
   module: {
     loaders: [
@@ -13,7 +13,7 @@ module.exports = {
         exclude: /node_modules/,
         loader: 'babel-loader',
         query: {
-          presets: ['es2015', 'react'],
+          presets: ['env', 'react'],
           plugins: ['transform-object-rest-spread']
         }
       },
@@ -24,8 +24,6 @@ module.exports = {
     ]
   },
   resolve: {
-    extensions: {
-      extensions: ['.js', '.jsx', '*'],
-    }
+    extensions: ['.js', '.jsx', '*'],
   }
 };
