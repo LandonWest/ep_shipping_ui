@@ -8,20 +8,50 @@ class ToAddressFields extends Component {
   }
 
   render() {
+    const change = this.props.handleFieldInput;
+    const to = this.props.toAddress;
+
     return (
       <div>
         <h2>To Address</h2>
 
-        <InputField field="Company" jsClass="jsCompany" />
-        <InputField field="Name" jsClass="jsName" />
-        <InputField field="Street 1" jsClass="jsStreet1" />
-        <InputField field="Street 2" jsClass="jsStreet2" />
-        <InputField field="City" jsClass="jsCity" />
-        <InputField field="State" jsClass="jsState" />
-        <InputField field="Zip" jsClass="jsZip" />
-        <InputField field="Phone" jsClass="jsPhone" />
-        <InputField field="Email" jsClass="jsEmail" />
-        
+        <InputField field="company"
+                    jsClass="jsToAddress"
+                    value={to.company}
+                    handleFieldInput={change} />
+        <InputField field="name"
+                    jsClass="jsToAddress"
+                    value={to.name}
+                    handleFieldInput={change} />
+        <InputField field="street1"
+                    jsClass="jsToAddress"
+                    value={to.street1}
+                    handleFieldInput={change} />
+        <InputField field="street2"
+                    jsClass="jsToAddress"
+                    value={to.street2}
+                    handleFieldInput={change} />
+        <InputField field="city"
+                    jsClass="jsToAddress"
+                    value={to.city}
+                    handleFieldInput={change} />
+        <InputField field="state"
+                    jsClass="jsToAddress"
+                    value={to.state}
+                    handleFieldInput={change} />
+        <InputField field="zip"
+                    jsClass="jsToAddress"
+                    value={to.zip}
+                    handleFieldInput={change}/>
+        <InputField field="phone"
+                    jsClass="jsToAddress"
+                    value={to.phone}
+                    handleFieldInput={change}/>
+        <InputField field="email"
+                    jsClass="jsToAddress"
+                    value={to.email}
+                    handleFieldInput={change}/>
+
         <button onClick={this.props.nextStep}>Next</button>
       </div>
     );

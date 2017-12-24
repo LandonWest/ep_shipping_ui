@@ -5,7 +5,10 @@ function InputFields(props) {
     <div>
       <label htmlFor="">{props.field}</label>
       <input type="text"
-             className={props.jsClass}/>
+             name={props.field}
+             className={props.jsClass}
+             value={props.value}
+             onChange={props.handleFieldInput}/>
     </div>
   );
 }

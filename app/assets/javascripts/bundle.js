@@ -947,6 +947,8 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _react = __webpack_require__(1);
@@ -960,6 +962,10 @@ var _ToAddressFields2 = _interopRequireDefault(_ToAddressFields);
 var _FromAddressFields = __webpack_require__(30);
 
 var _FromAddressFields2 = _interopRequireDefault(_FromAddressFields);
+
+var _ParcelFields = __webpack_require__(31);
+
+var _ParcelFields2 = _interopRequireDefault(_ParcelFields);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -979,14 +985,71 @@ var App = function (_Component) {
 
     _this.nextStep = _this.nextStep.bind(_this);
     _this.prevStep = _this.prevStep.bind(_this);
+    _this.handleFieldInput = _this.handleFieldInput.bind(_this);
 
     _this.state = {
-      step: 1
+      step: 1,
+      toAddress: {
+        company: "",
+        name: "",
+        street1: "",
+        street2: "",
+        city: "",
+        state: "",
+        zip: "",
+        phone: "",
+        email: ""
+      },
+      fromAddress: {
+        company: "",
+        name: "",
+        street1: "",
+        street2: "",
+        city: "",
+        state: "",
+        zip: "",
+        phone: "",
+        email: ""
+      },
+      parcel: {
+        length: "",
+        width: "",
+        height: "",
+        weight: ""
+      }
     };
     return _this;
   }
 
   _createClass(App, [{
+    key: 'handleFieldInput',
+    value: function handleFieldInput(e) {
+      var _this2 = this;
+
+      var name = e.target.name;
+      var parent = e.target.className;
+
+      var map = {
+        jsToAddress: function jsToAddress() {
+          var toAddress = _extends({}, _this2.state.toAddress);
+          toAddress[name] = e.target.value;
+          _this2.setState({ toAddress: toAddress });
+        },
+        jsFromAddress: function jsFromAddress() {
+          var fromAddress = _extends({}, _this2.state.fromAddress);
+          fromAddress[name] = e.target.value;
+          _this2.setState({ fromAddress: fromAddress });
+        },
+        jsParcel: function jsParcel() {
+          var parcel = _extends({}, _this2.state.parcel);
+          parcel[name] = e.target.value;
+          _this2.setState({ parcel: parcel });
+        }
+      };
+
+      map[parent]();
+    }
+  }, {
     key: 'nextStep',
     value: function nextStep() {
       var current = this.state.step;
@@ -1005,12 +1068,19 @@ var App = function (_Component) {
     value: function render() {
       switch (this.state.step) {
         case 1:
-          return _react2.default.createElement(_ToAddressFields2.default, { nextStep: this.nextStep });
+          return _react2.default.createElement(_ToAddressFields2.default, { nextStep: this.nextStep,
+            handleFieldInput: this.handleFieldInput,
+            toAddress: this.state.toAddress });
           break;
         case 2:
           return _react2.default.createElement(_FromAddressFields2.default, { prevStep: this.prevStep,
-            nextStep: this.nextStep });
+            nextStep: this.nextStep,
+            handleFieldInput: this.handleFieldInput });
           break;
+        case 3:
+          return _react2.default.createElement(_ParcelFields2.default, { prevStep: this.prevStep,
+            nextStep: this.nextStep,
+            handleFieldInput: this.handleFieldInput });
         default:
           return _react2.default.createElement(
             'div',
@@ -1103,7 +1173,10 @@ function InputFields(props) {
       props.field
     ),
     _react2.default.createElement("input", { type: "text",
-      className: props.jsClass })
+      name: props.field,
+      className: props.jsClass,
+      value: props.value,
+      onChange: props.handleFieldInput })
   );
 }
 
@@ -1117,7 +1190,7 @@ exports.default = InputFields;
 
 
 Object.defineProperty(exports, "__esModule", {
-  value: true
+            value: true
 });
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -1139,44 +1212,74 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 var ToAddressFields = function (_Component) {
-  _inherits(ToAddressFields, _Component);
+            _inherits(ToAddressFields, _Component);
 
-  function ToAddressFields() {
-    _classCallCheck(this, ToAddressFields);
+            function ToAddressFields() {
+                        _classCallCheck(this, ToAddressFields);
 
-    return _possibleConstructorReturn(this, (ToAddressFields.__proto__ || Object.getPrototypeOf(ToAddressFields)).call(this));
-  }
+                        return _possibleConstructorReturn(this, (ToAddressFields.__proto__ || Object.getPrototypeOf(ToAddressFields)).call(this));
+            }
 
-  _createClass(ToAddressFields, [{
-    key: 'render',
-    value: function render() {
-      return _react2.default.createElement(
-        'div',
-        null,
-        _react2.default.createElement(
-          'h2',
-          null,
-          'To Address'
-        ),
-        _react2.default.createElement(_InputField2.default, { field: 'Company', jsClass: 'jsCompany' }),
-        _react2.default.createElement(_InputField2.default, { field: 'Name', jsClass: 'jsName' }),
-        _react2.default.createElement(_InputField2.default, { field: 'Street 1', jsClass: 'jsStreet1' }),
-        _react2.default.createElement(_InputField2.default, { field: 'Street 2', jsClass: 'jsStreet2' }),
-        _react2.default.createElement(_InputField2.default, { field: 'City', jsClass: 'jsCity' }),
-        _react2.default.createElement(_InputField2.default, { field: 'State', jsClass: 'jsState' }),
-        _react2.default.createElement(_InputField2.default, { field: 'Zip', jsClass: 'jsZip' }),
-        _react2.default.createElement(_InputField2.default, { field: 'Phone', jsClass: 'jsPhone' }),
-        _react2.default.createElement(_InputField2.default, { field: 'Email', jsClass: 'jsEmail' }),
-        _react2.default.createElement(
-          'button',
-          { onClick: this.props.nextStep },
-          'Next'
-        )
-      );
-    }
-  }]);
+            _createClass(ToAddressFields, [{
+                        key: 'render',
+                        value: function render() {
+                                    var change = this.props.handleFieldInput;
+                                    var to = this.props.toAddress;
 
-  return ToAddressFields;
+                                    return _react2.default.createElement(
+                                                'div',
+                                                null,
+                                                _react2.default.createElement(
+                                                            'h2',
+                                                            null,
+                                                            'To Address'
+                                                ),
+                                                _react2.default.createElement(_InputField2.default, { field: 'company',
+                                                            jsClass: 'jsToAddress',
+                                                            value: to.company,
+                                                            handleFieldInput: change }),
+                                                _react2.default.createElement(_InputField2.default, { field: 'name',
+                                                            jsClass: 'jsToAddress',
+                                                            value: to.name,
+                                                            handleFieldInput: change }),
+                                                _react2.default.createElement(_InputField2.default, { field: 'street1',
+                                                            jsClass: 'jsToAddress',
+                                                            value: to.street1,
+                                                            handleFieldInput: change }),
+                                                _react2.default.createElement(_InputField2.default, { field: 'street2',
+                                                            jsClass: 'jsToAddress',
+                                                            value: to.street2,
+                                                            handleFieldInput: change }),
+                                                _react2.default.createElement(_InputField2.default, { field: 'city',
+                                                            jsClass: 'jsToAddress',
+                                                            value: to.city,
+                                                            handleFieldInput: change }),
+                                                _react2.default.createElement(_InputField2.default, { field: 'state',
+                                                            jsClass: 'jsToAddress',
+                                                            value: to.state,
+                                                            handleFieldInput: change }),
+                                                _react2.default.createElement(_InputField2.default, { field: 'zip',
+                                                            jsClass: 'jsToAddress',
+                                                            value: to.zip,
+                                                            handleFieldInput: change }),
+                                                _react2.default.createElement(_InputField2.default, { field: 'phone',
+                                                            jsClass: 'jsToAddress',
+                                                            value: to.phone,
+                                                            handleFieldInput: change }),
+                                                _react2.default.createElement(_InputField2.default, { field: 'email',
+                                                            jsClass: 'jsToAddress',
+                                                            value: to.email,
+                                                            handleFieldInput: change }),
+                                                _react2.default.createElement(
+                                                            'button',
+                                                            { onClick: this.props.nextStep },
+                                                            'Next'
+                                                )
+                                    );
+                        }
+            }]);
+
+            return ToAddressFields;
 }(_react.Component);
 
 ;
@@ -18478,7 +18581,7 @@ isValidElement:K,version:"16.2.0",__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_F
 
 
 Object.defineProperty(exports, "__esModule", {
-  value: true
+            value: true
 });
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -18500,34 +18603,138 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 var FromAddressFields = function (_Component) {
-  _inherits(FromAddressFields, _Component);
+            _inherits(FromAddressFields, _Component);
 
-  function FromAddressFields() {
-    _classCallCheck(this, FromAddressFields);
+            function FromAddressFields() {
+                        _classCallCheck(this, FromAddressFields);
 
-    return _possibleConstructorReturn(this, (FromAddressFields.__proto__ || Object.getPrototypeOf(FromAddressFields)).call(this));
+                        return _possibleConstructorReturn(this, (FromAddressFields.__proto__ || Object.getPrototypeOf(FromAddressFields)).call(this));
+            }
+
+            _createClass(FromAddressFields, [{
+                        key: 'render',
+                        value: function render() {
+                                    var change = this.props.handleFieldInput;
+
+                                    return _react2.default.createElement(
+                                                'div',
+                                                null,
+                                                _react2.default.createElement(
+                                                            'h2',
+                                                            null,
+                                                            'From Address'
+                                                ),
+                                                _react2.default.createElement(_InputField2.default, { field: 'company',
+                                                            jsClass: 'jsFromAddress',
+                                                            handleFieldInput: change }),
+                                                _react2.default.createElement(_InputField2.default, { field: 'name',
+                                                            jsClass: 'jsFromAddress',
+                                                            handleFieldInput: change }),
+                                                _react2.default.createElement(_InputField2.default, { field: 'street 1',
+                                                            jsClass: 'jsFromAddress',
+                                                            handleFieldInput: change }),
+                                                _react2.default.createElement(_InputField2.default, { field: 'street 2',
+                                                            jsClass: 'jsFromAddress',
+                                                            handleFieldInput: change }),
+                                                _react2.default.createElement(_InputField2.default, { field: 'city',
+                                                            jsClass: 'jsFromAddress',
+                                                            handleFieldInput: change }),
+                                                _react2.default.createElement(_InputField2.default, { field: 'state',
+                                                            jsClass: 'jsFromAddress',
+                                                            handleFieldInput: change }),
+                                                _react2.default.createElement(_InputField2.default, { field: 'zip',
+                                                            jsClass: 'jsFromAddress',
+                                                            handleFieldInput: change }),
+                                                _react2.default.createElement(_InputField2.default, { field: 'phone',
+                                                            jsClass: 'jsFromAddress',
+                                                            handleFieldInput: change }),
+                                                _react2.default.createElement(_InputField2.default, { field: 'email',
+                                                            jsClass: 'jsFromAddress',
+                                                            handleFieldInput: change }),
+                                                _react2.default.createElement(
+                                                            'button',
+                                                            { onClick: this.props.prevStep },
+                                                            'Previous'
+                                                ),
+                                                _react2.default.createElement(
+                                                            'button',
+                                                            { onClick: this.props.nextStep },
+                                                            'Next'
+                                                )
+                                    );
+                        }
+            }]);
+
+            return FromAddressFields;
+}(_react.Component);
+
+;
+
+exports.default = FromAddressFields;
+
+/***/ }),
+/* 31 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(1);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _InputField = __webpack_require__(16);
+
+var _InputField2 = _interopRequireDefault(_InputField);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var ParcelFields = function (_Component) {
+  _inherits(ParcelFields, _Component);
+
+  function ParcelFields() {
+    _classCallCheck(this, ParcelFields);
+
+    return _possibleConstructorReturn(this, (ParcelFields.__proto__ || Object.getPrototypeOf(ParcelFields)).call(this));
   }
 
-  _createClass(FromAddressFields, [{
+  _createClass(ParcelFields, [{
     key: 'render',
     value: function render() {
+      var change = this.props.handleFieldInput;
+
       return _react2.default.createElement(
         'div',
         null,
         _react2.default.createElement(
           'h2',
           null,
-          'From Address'
+          'Parcel Details'
         ),
-        _react2.default.createElement(_InputField2.default, { field: 'Company', jsClass: 'jsCompany' }),
-        _react2.default.createElement(_InputField2.default, { field: 'Name', jsClass: 'jsName' }),
-        _react2.default.createElement(_InputField2.default, { field: 'Street 1', jsClass: 'jsStreet1' }),
-        _react2.default.createElement(_InputField2.default, { field: 'Street 2', jsClass: 'jsStreet2' }),
-        _react2.default.createElement(_InputField2.default, { field: 'City', jsClass: 'jsCity' }),
-        _react2.default.createElement(_InputField2.default, { field: 'State', jsClass: 'jsState' }),
-        _react2.default.createElement(_InputField2.default, { field: 'Zip', jsClass: 'jsZip' }),
-        _react2.default.createElement(_InputField2.default, { field: 'Phone', jsClass: 'jsPhone' }),
-        _react2.default.createElement(_InputField2.default, { field: 'Email', jsClass: 'jsEmail' }),
+        _react2.default.createElement(_InputField2.default, { field: 'length',
+          jsClass: 'jsParcel',
+          handleFieldInput: change }),
+        _react2.default.createElement(_InputField2.default, { field: 'width',
+          jsClass: 'jsParcel',
+          handleFieldInput: change }),
+        _react2.default.createElement(_InputField2.default, { field: 'height',
+          jsClass: 'jsParcel',
+          handleFieldInput: change }),
+        _react2.default.createElement(_InputField2.default, { field: 'weight',
+          jsClass: 'jsParcel',
+          handleFieldInput: change }),
         _react2.default.createElement(
           'button',
           { onClick: this.props.prevStep },
@@ -18542,12 +18749,10 @@ var FromAddressFields = function (_Component) {
     }
   }]);
 
-  return FromAddressFields;
+  return ParcelFields;
 }(_react.Component);
 
-;
-
-exports.default = FromAddressFields;
+exports.default = ParcelFields;
 
 /***/ })
 /******/ ]);
