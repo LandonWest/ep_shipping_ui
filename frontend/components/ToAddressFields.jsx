@@ -21,8 +21,8 @@ class ToAddressFields extends Component {
         <InputField field="Zip" jsClass="jsZip" />
         <InputField field="Phone" jsClass="jsPhone" />
         <InputField field="Email" jsClass="jsEmail" />
-
-        <button>Next</button>
+        
+        <button onClick={this.props.nextStep}>Next</button>
       </div>
     );
   }
