@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import ToAddressFields from './ToAddressFields';
+import FromAddressFields from './FromAddressFields';
 
 class App extends Component {
   constructor() {
     super();
     this.nextStep = this.nextStep.bind(this);
+    this.prevStep = this.prevStep.bind(this);
 
     this.state = {
       step: 1,
@@ -17,6 +19,12 @@ class App extends Component {
     this.setState({step: ++current});
   }
 
+  prevStep() {
+    let current = this.state.step;
+    console.log(`moving to step ${current - 1}`);
+    this.setState({step: --current});
+  }
+
   render() {
     switch (this.state.step) {
       case 1:
@@ -26,7 +34,8 @@ class App extends Component {
         break;
       case 2:
         return (
-          "Hello from step two."
+          <FromAddressFields prevStep={this.prevStep}
+                             nextStep={this.nextStep} />
         );
         break;
       default:
